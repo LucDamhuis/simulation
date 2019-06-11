@@ -40,7 +40,7 @@ def send(message,coord):
 	print ("The first coord is " + coord)
 	print("THE CONSTRING IS" + connstring2)
 	connection = pika.BlockingConnection(
-    pika.ConnectionParameters(host='localhost'))
+    pika.ConnectionParameters(host='172.17.0.2'))
 	channel = connection.channel()
 	channel.queue_declare(queue=connstring2, durable=True)
 	channel.basic_publish(
@@ -170,7 +170,7 @@ def receive():
 			connection.close()
 			
 	connection = pika.BlockingConnection(
-    pika.ConnectionParameters(host='localhost'))
+    pika.ConnectionParameters(host='172.17.0.2'))
 	channel = connection.channel()
 	countrec = 0
 	connstring = str("coordinates_receiver4")
