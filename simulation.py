@@ -91,7 +91,7 @@ def travel(coordinates1,coordinates2):
 	travelString += str(toTravelDistance-traveledDistance)
 	travelString += "m"
 	travelString = ""
-	time.sleep(.01)
+	time.sleep(.1)
 
 def start(coord):
 	print(coordinates)
