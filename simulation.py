@@ -48,8 +48,7 @@ def send(message,coord):
 	if message=='stops':
 		print("closing connection")
 		connection.close()
-	if message=='clear':
-		#channel.queue_delete(queue=connstring2)
+
 		
 
 def calc_distance(coordinates1,coordinates2):
