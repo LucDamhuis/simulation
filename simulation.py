@@ -35,7 +35,7 @@ def send(message,coord):
 	connstring2 = "simulation_queue"
 	connstring2 += coord
 	connection = pika.BlockingConnection(
-    pika.ConnectionParameters(host='192.168.24.110'))
+    pika.ConnectionParameters(host='localhost'))
 	channel = connection.channel()
 	channel.queue_declare(queue=connstring2, durable=True)
 	channel.basic_publish(
@@ -46,7 +46,7 @@ def send(message,coord):
         delivery_mode=2,  # make message persistent
     ))
 	if message=='clear':
-		channel.queue_delete(queue=connstring2)
+		#channel.queue_delete(queue=connstring2)
 		print("closing connection")
 		connection.close()
 
@@ -141,7 +141,7 @@ def receive():
 			connection.close()
 			
 	connection = pika.BlockingConnection(
-    pika.ConnectionParameters(host='192.168.24.110'))
+    pika.ConnectionParameters(host='localhost'))
 	channel = connection.channel()
 	countrec = 0
 	connstring = str("coordinates_receiver4")
