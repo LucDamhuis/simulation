@@ -35,7 +35,7 @@ def send(message,coord):
 	connstring2 = "simulation_queue"
 	connstring2 += coord
 	connection = pika.BlockingConnection(
-    pika.ConnectionParameters(host='localhost'))
+    pika.ConnectionParameters(host='192.168.24.110'))
 	channel = connection.channel()
 	channel.queue_declare(queue=connstring2, durable=True)
 	channel.basic_publish(
@@ -45,10 +45,12 @@ def send(message,coord):
     properties=pika.BasicProperties(
         delivery_mode=2,  # make message persistent
     ))
-	if message=='clear':
-		#channel.queue_delete(queue=connstring2)
+	if message=='stops':
 		print("closing connection")
 		connection.close()
+	if message=='clear':
+		#channel.queue_delete(queue=connstring2)
+		
 
 def calc_distance(coordinates1,coordinates2):
 	global traveledDistance
@@ -141,7 +143,7 @@ def receive():
 			connection.close()
 			
 	connection = pika.BlockingConnection(
-    pika.ConnectionParameters(host='localhost'))
+    pika.ConnectionParameters(host='192.168.24.110'))
 	channel = connection.channel()
 	countrec = 0
 	connstring = str("coordinates_receiver4")
